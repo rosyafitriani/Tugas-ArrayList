@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListTugas {
+    public static void main(String[] args) {
+        ArrayList<String[]> mahasiswa = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        int jumlah;
+
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        jumlah = scanner.nextInt();
+        scanner.nextLine(); 
+
+        for (int i = 0; i < jumlah; i++) {
+            System.out.println("Mahasiswa Ke " + (i + 1));
+            System.out.print("Nama: ");
+            String nama = scanner.nextLine();
+            System.out.print("Nilai: ");
+            int nilai = scanner.nextInt();
+            scanner.nextLine();  
+            mahasiswa.add(new String[]{nama, String.valueOf(nilai)});
+        }
+        
+        int totalNilai = 0;
+        System.out.println("\nDAFTAR NILAI MAHASISWA");
+        System.out.println("No\tNama\tNilai\tStatus");
+
+        for (int i = 0; i < mahasiswa.size(); i++) {
+            String[] mhs = mahasiswa.get(i);
+            int nilai = Integer.parseInt(mhs[1]);  
+            totalNilai += nilai; 
+            String status = (nilai >= 60) ? "Lulus" : "Tidak Lulus";
+
+            System.out.println((i + 1) + "\t" + mhs[0] + "\t" + nilai + "\t" + status);
+        }
+
+        double rataRata = (double) totalNilai / jumlah;  
+        System.out.println("\nJumlah: " + totalNilai);  
+        System.out.println("Nilai Rata-rata: " + rataRata);  
+
+        scanner.close();
+    }
+}
